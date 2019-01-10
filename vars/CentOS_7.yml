@@ -1,0 +1,8 @@
+---
+
+graphite_packages:
+  - graphite-web
+  - python-carbon
+
+carbon_service: "carbon-cache"
+

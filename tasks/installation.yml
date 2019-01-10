@@ -1,0 +1,10 @@
+---
+
+- name: install graphite related packages
+  package:
+    name: '{{ item }}'
+    state: present
+  loop: '{{ graphite_packages }}'
+  tags:
+    - 'role::graphite'
+    - 'role::graphite:install'

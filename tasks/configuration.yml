@@ -1,0 +1,64 @@
+---
+
+- name: configure retention policy
+  template:
+    src: storage-schemas.conf.j2
+    dest: '{{ /opt/graphite/conf/storage-schemas.conf }}'
+    owner: root
+    group: root
+    mode: 0644
+    seuser: system_u
+    serole: object_r
+    setype: etc_t
+    selevel: s0
+  tags:
+    - 'role::graphite'
+    - 'role::graphite::config'
+
+
+      #- name: create ssh authorized keys directory
+      #  file:
+      #    path: /etc/ssh/authorized_keys
+      #    state: directory
+      #    owner: root
+      #    group: root
+      #    mode: 0755
+      #    seuser: system_u
+      #    serole: object_r
+      #    setype: sshd_key_t
+      #    selevel: s0
+      #  tags:
+      #    - 'role::ssh'
+      #    - 'role::ssh:config'
+      #
+      #- name: configure ssh daemon
+      #  template:
+      #    src: etc/ssh/sshd_config.j2
+      #    dest: '{{ ssh_daemon_cfg }}'
+      #    owner: root
+      #    group: root
+      #    mode: 0644
+      #    seuser: system_u
+      #    serole: object_r
+      #    setype: etc_t
+      #    selevel: s0
+      #  tags:
+      #    - 'role::ssh'
+      #    - 'role::ssh:config'
+      #  notify:
+      #    - 'ssh check sshd config and restart'
+      #
+      #- name: configure ssh client
+      #  template:
+      #    src: etc/ssh/ssh_config.j2
+      #    dest: '{{ ssh_cfg }}'
+      #    owner: root
+      #    group: root
+      #    mode: 0644
+      #    seuser: system_u
+      #    serole: object_r
+      #    setype: etc_t
+      #    selevel: s0
+      #  tags:
+      #    - 'role::ssh'
+      #    - 'role::ssh:config'
