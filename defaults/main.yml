@@ -1,0 +1,9 @@
+---
+
+
+graphite_web_confdir: "/opt/graphite/webapp/graphite"
+graphite_web_salt: "feiCh5eeheiKeingomoo5aiG0id9ooM1yeeg4unie3tahpai1pheef8uj3AhR8pa"
+graphite_web_timezone: "Europe/Zurich"
+
+carbon_service: "carbon-cache"
+carbon_confdir: "/opt/graphite/conf"

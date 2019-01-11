@@ -1,10 +1,16 @@
 ---
 
-- name: install graphite related packages
+- name: install required packages
   package:
     name: '{{ item }}'
     state: present
-  loop: '{{ graphite_packages }}'
-  tags:
-    - 'role::graphite'
-    - 'role::graphite:install'
+  loop: '{{ graphite_requirements }}'
+
+- name: install graphite from pip
+  pip:
+    executable: "/bin/pip3.4"
+    state: present
+    name: "{{ item }}"
+  loop: '{{ pip_packages }}'
+
+

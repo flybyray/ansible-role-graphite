@@ -1,64 +1,28 @@
 ---
 
-- name: configure retention policy
+# configure carbon
+
+- name: write config files
   template:
-    src: storage-schemas.conf.j2
-    dest: '{{ /opt/graphite/conf/storage-schemas.conf }}'
-    owner: root
-    group: root
-    mode: 0644
-    seuser: system_u
-    serole: object_r
-    setype: etc_t
-    selevel: s0
-  tags:
-    - 'role::graphite'
-    - 'role::graphite::config'
+    src: "{{ item.src }}"
+    dest: "{{ carbon_confdir }}/{{ item.dest }}"
+  loop:
+    - { src: 'templates/carbon/carbon.conf.j2', dest: 'carbon.conf' }
+    - { src: 'templates/carbon/storage-schemas.conf.j2', dest: 'storage-schemas.conf' }
+    - { src: 'templates/carbon/storage-aggregation.conf.j2', dest: 'storage-aggregation.conf' }
 
-
-      #- name: create ssh authorized keys directory
-      #  file:
-      #    path: /etc/ssh/authorized_keys
-      #    state: directory
-      #    owner: root
-      #    group: root
-      #    mode: 0755
-      #    seuser: system_u
-      #    serole: object_r
-      #    setype: sshd_key_t
-      #    selevel: s0
-      #  tags:
-      #    - 'role::ssh'
-      #    - 'role::ssh:config'
-      #
-      #- name: configure ssh daemon
-      #  template:
-      #    src: etc/ssh/sshd_config.j2
-      #    dest: '{{ ssh_daemon_cfg }}'
-      #    owner: root
-      #    group: root
-      #    mode: 0644
-      #    seuser: system_u
-      #    serole: object_r
-      #    setype: etc_t
-      #    selevel: s0
-      #  tags:
-      #    - 'role::ssh'
-      #    - 'role::ssh:config'
+      #- name: enable carbon service
+      #  service:
+      #    name: "{{ carbon_service }}"
+      #    enabled: yes
       #  notify:
-      #    - 'ssh check sshd config and restart'
-      #
-      #- name: configure ssh client
-      #  template:
-      #    src: etc/ssh/ssh_config.j2
-      #    dest: '{{ ssh_cfg }}'
-      #    owner: root
-      #    group: root
-      #    mode: 0644
-      #    seuser: system_u
-      #    serole: object_r
-      #    setype: etc_t
-      #    selevel: s0
-      #  tags:
-      #    - 'role::ssh'
-      #    - 'role::ssh:config'
+      #    - 'restart carbon cache'
+
+- name: initialize database
+  command: "PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb"
+
+- name: collect static files
+  command: "PYTHONPATH=/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+
+
+

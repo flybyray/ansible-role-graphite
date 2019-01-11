@@ -1,8 +1,19 @@
 ---
 
-graphite_packages:
-  - graphite-web
-  - python-carbon
+graphite_requirements:
+  - httpd
+  - mod_wsgi
+  - python34-pip
+  - python34-devel
+  - python34-cairo
+  - python-setuptools
+  - libffi-devel
 
-carbon_service: "carbon-cache"
+pip_packages:
+  - whisper
+  - carbon
+  - graphite-web
+
+graphite_web_salt: "feiCh5eeheiKeingomoo5aiG0id9ooM1yeeg4unie3tahpai1pheef8uj3AhR8pa"
+
 

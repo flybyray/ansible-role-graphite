@@ -6,16 +6,16 @@
     - '{{ ansible_distribution }}_{{ ansible_distribution_major_version }}.yml'
     - '{{ ansible_os_family }}.yml'
   tags:
-    - 'role::ssh'
-    - 'role::ssh:install'
-    - 'role::ssh:config'
+    - 'role::graphite'
+    - 'role::graphite:install'
+    - 'role::graphite:config'
 
 - import_tasks: installation.yml
   tags:
-    - 'role::ssh'
-    - 'role::ssh:install'
+    - 'role::graphite'
+    - 'role::graphite:install'
 
 - import_tasks: configuration.yml
   tags:
-    - 'role::ssh'
-    - 'role::ssh:config'
+    - 'role::graphite'
+    - 'role::graphite:config'
