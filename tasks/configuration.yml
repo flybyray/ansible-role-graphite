@@ -10,6 +10,8 @@
     - { src: 'templates/carbon/carbon.conf.j2', dest: 'carbon.conf' }
     - { src: 'templates/carbon/storage-schemas.conf.j2', dest: 'storage-schemas.conf' }
     - { src: 'templates/carbon/storage-aggregation.conf.j2', dest: 'storage-aggregation.conf' }
+  notify:
+    - 'restart carbon cache'
 
       #- name: enable carbon service
       #  service:
@@ -18,11 +20,26 @@
       #  notify:
       #    - 'restart carbon cache'
 
+- name: write graphite-web configuration
+  template:
+    src: "templates/graphite-web/local_settings.py.j2"
+    dest: "{{ graphite_web_confdir }}/local_settings.py"
+
+- name: write graphite-web apache configuration
+  template:
+    src: "templates/graphite-web/graphite-web.conf.j2"
+    dest: "/etc/httpd/conf.d/graphite-web.conf"
+
 - name: initialize database
-  command: "PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb"
+  shell: "PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb"
 
 - name: collect static files
-  command: "PYTHONPATH=/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+  shell: "PYTHONPATH=/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+  args:
+    creates: "{{ graphite_web_staticdir }}"
+
+- name: configure mod-wsgi with python3
+  shell: "mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf"
 
 
 

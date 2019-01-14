@@ -16,7 +16,7 @@ SECRET_KEY = '{{ graphite_web_salt }}'
 # In Django 1.5+ set this to the list of hosts your graphite instances is
 # accessible as. See:
 # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-ALLOWED_HOSTS
-#ALLOWED_HOSTS = [ '*' ]
+ALLOWED_HOSTS = [ '*' ]
 
 # Set your local timezone (Django's default is America/Chicago)
 # If your graphs appear to be offset by a couple hours then this probably
@@ -193,7 +193,7 @@ DEFAULT_XFILES_FACTOR = 0
 # See http://www.python-ldap.org/ for further details on these options.
 
 ## REMOTE_USER authentication. See: https://docs.djangoproject.com/en/dev/howto/auth-remote-user/
-#USE_REMOTE_USER_AUTHENTICATION = True
+USE_REMOTE_USER_AUTHENTICATION = True
 
 # Override the URL for the login link (e.g. for django_openid_auth)
 #LOGIN_URL = '/account/login'
@@ -242,17 +242,19 @@ DEFAULT_XFILES_FACTOR = 0
 # The default is 'django.db.backends.sqlite3' with file 'graphite.db'
 # located in STORAGE_DIR
 #
-#DATABASES = {
-#    'default': {
-#        'NAME': '/opt/graphite/storage/graphite.db',
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'USER': '',
-#        'PASSWORD': '',
-#        'HOST': '',
-#        'PORT': ''
-#    }
-#}
-#
+DATABASES = {
+    'default': {
+    'NAME': '{{ graphite_web_db_name }}',
+    'ENGINE': '{{ graphite_web_db_engine }}',
+        'USER': '{{ graphite_web_db_user }}',
+        'PASSWORD': '{{ graphite_web_db_password }}',
+        'HOST': '{{ graphite_web_db_host }}',
+        'PORT': '{{ graphite_web_db_port }}'
+        'OPTIONS': {
+            'ssl': {'ca': '/etc/ssl/certs/ca-bundle.crt'}
+        },
+    }
+}
 
 
 #########################

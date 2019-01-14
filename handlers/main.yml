@@ -1,6 +1,4 @@
 ---
 
 - name: restart carbon cache
-  service:
-    name: '{{ carbon_service }}'
-    state: restarted
+  command: '{{ carbon_binary }} stop; {{ carbon_binary }} start'
