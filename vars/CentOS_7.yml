@@ -16,5 +16,3 @@ pip_packages:
 
 graphite_web_salt: "feiCh5eeheiKeingomoo5aiG0id9ooM1yeeg4unie3tahpai1pheef8uj3AhR8pa"
 carbon_binary: "/opt/graphite/bin/carbon-cache.py"
-
-

@@ -11,5 +11,3 @@ graphite_web_timezone: "Europe/Zurich"
 
 carbon_service: "carbon-cache"
 carbon_confdir: "/opt/graphite/conf"
-
-
