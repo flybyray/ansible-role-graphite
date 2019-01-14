@@ -31,15 +31,18 @@
     dest: "/etc/httpd/conf.d/graphite-web.conf"
 
 - name: initialize database
-  shell: "PYTHONPATH=/opt/graphite/webapp django-admin.py migrate --settings=graphite.settings --run-syncdb"
+  command: "django-admin.py migrate --settings=graphite.settings --run-syncdb"
+  environment:
+    PYTHONPATH: "/opt/graphite/webapp"
+  register: graphite_register_db_init
 
 - name: collect static files
-  shell: "PYTHONPATH=/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+  command: "/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+  environment:
+    PYTHONPATH: "/opt/graphite/webapp"
   args:
     creates: "{{ graphite_web_staticdir }}"
+  register: graphite_register_static_generated
 
 - name: configure mod-wsgi with python3
   shell: "mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf"
-
-
-
