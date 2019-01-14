@@ -4,5 +4,12 @@
 graphite_web_confdir: "/opt/graphite/webapp/graphite"
 graphite_web_staticdir: "/opt/graphite/static"
 graphite_web_timezone: "Europe/Zurich"
+graphite_web_db_name: "graphite"
+graphite_web_db_user: "graphite"
+graphite_web_db_password: "graphite"
+graphite_web_db_host: "localhost"
+graphite_web_db_port: "3306"
+graphite_web_db_engine: "mysql"
 
 carbon_confdir: "/opt/graphite/conf"
+
