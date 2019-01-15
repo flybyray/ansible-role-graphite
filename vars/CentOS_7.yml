@@ -13,4 +13,3 @@ pip_packages:
   - carbon
   - graphite-web
   - mod-wsgi
-
