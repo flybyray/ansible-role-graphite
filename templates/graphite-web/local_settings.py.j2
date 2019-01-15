@@ -249,10 +249,12 @@ DATABASES = {
         'USER': '{{ graphite_web_db_user }}',
         'PASSWORD': '{{ graphite_web_db_password }}',
         'HOST': '{{ graphite_web_db_host }}',
-        'PORT': '{{ graphite_web_db_port }}',
+        {% if graphite_web_db_ssl %}
         'OPTIONS': {
-            'ssl': {'ca': '/etc/ssl/certs/ca-bundle.crt'}
+          'ssl': {'ca': '{{ graphite_web_db_ssl_ca }}'}
         }
+        {% endif %}
+        'PORT': '{{ graphite_web_db_port }}'
     }
 }
 

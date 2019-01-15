@@ -6,8 +6,14 @@ graphite_web_db_password: "passw0rd"
 graphite_web_db_host: "localhost"
 graphite_web_db_port: "3306"
 graphite_web_db_engine: "django.db.backends.mysql"
+graphite_web_db_ssl: True
+graphite_web_db_ssl_ca: "/etc/ssl/certs/ca-bundle.crt"
 graphite_web_confdir: "/opt/graphite/webapp/graphite"
 graphite_web_timezone: "Europe/Zurich"
+graphite_web_staticdir: "/opt/graphite/static"
 
 carbon_service: "carbon-cache"
 carbon_confdir: "/opt/graphite/conf"
+carbon_binary: "/opt/graphite/bin/carbon-cache.py"
+
+graphite_web_salt: "feiCh5eeheiKeingomoo5aiG0id9ooM1yeeg4unie3tahpai1pheef8uj3AhR8pa"

@@ -44,8 +44,8 @@ WSGISocketPrefix run/wsgi
         # * Collect static files in a directory by running:
         #     django-admin.py collectstatic --noinput --settings=graphite.settings
         #   And set an alias to serve static files with Apache:
-        Alias /static/ /opt/graphite/static/
-        <Directory /opt/graphite/static>
+        Alias /static/ {{ graphite_web_staticdir }}
+        <Directory {{ graphite_web_staticdir }}>
             Require all granted
         </Directory>
 
