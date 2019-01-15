@@ -38,7 +38,7 @@
   changed_when: graphite_register_db_init.stdout is not search("No migrations to apply")
 
 - name: collect static files
-  command: "/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
+  command: "django-admin.py collectstatic --settings=graphite.settings"
   environment:
     PYTHONPATH: "/opt/graphite/webapp"
   args:
