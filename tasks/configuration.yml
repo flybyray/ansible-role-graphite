@@ -35,6 +35,7 @@
   environment:
     PYTHONPATH: "/opt/graphite/webapp"
   register: graphite_register_db_init
+  changed_when: graphite_register_db_init.stdout is not search("No migrations to apply")
 
 - name: collect static files
   command: "/opt/graphite/webapp/ django-admin.py collectstatic --settings=graphite.settings"
@@ -46,3 +47,5 @@
 
 - name: configure mod-wsgi with python3
   shell: "mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf"
+  args:
+    creates: "/etc/httpd/conf.modules.d/02-wsgi.conf"
