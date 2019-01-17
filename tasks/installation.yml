@@ -5,8 +5,8 @@
     name: '{{ item }}'
     state: present
   loop: '{{ graphite_requirements }}'
-  register: graphite_rpms_installed
-  until: graphite_rpms_installed is success
+  register: graphite_register_rpms_installed
+  until: graphite_register_rpms_installed is success
   retries: 10
   delay: 2
 
@@ -16,7 +16,7 @@
     state: present
     name: "{{ item }}"
   loop: '{{ pip_packages }}'
-  register: graphite_pip_installed
-  until: graphite_pip_installed is success
+  register: graphite_register_pip_installed
+  until: graphite_register_pip_installed is success
   retries: 10
   delay: 2
