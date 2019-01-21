@@ -11,34 +11,34 @@ ROLE GRAPHITE
 .. image:: https://img.shields.io/badge/galaxy-adfinis--sygroup.graphite-660198.svg?style=flat-square
   :target: https://galaxy.ansible.com/adfinis-sygroup/graphite
 
-A brief description of the role goes here.
+Installs and configures a basic setup with carbon, graphite-web and whisper.
 
 
 Requirements
 =============
 
-Any pre-requisites that may not be covered by Ansible itself or the role
-should be mentioned here. For instance, if the role uses the EC2 module, it
-may be a good idea to mention in this section that the boto package is required.
-
+This role has no requirements.
 
 Role Variables
 ===============
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.)
-should be mentioned here as well.
-
+```
+graphite_web_db_name: "/opt/graphite/storage/sqlite.db"
+graphite_web_db_user: "graphite"
+graphite_web_db_password: "passw0rd"
+graphite_web_db_host: "localhost"
+graphite_web_db_port: ""
+graphite_web_db_engine: "django.db.backends.sqlite3"
+graphite_web_db_ssl: False
+graphite_web_db_ssl_ca: "/etc/ssl/certs/ca-bundle.crt"
+graphite_web_timezone: "Europe/Zurich"
+graphite_web_salt: "&lt;random salt&gt;"
+```
 
 Dependencies
 =============
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables
-that are used from other roles.
-
+This role has no direct dependency to other roles.
 
 Example Playbook
 =================
