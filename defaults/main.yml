@@ -15,5 +15,3 @@ graphite_web_staticdir: "/opt/graphite/static"
 carbon_service: "carbon-cache"
 carbon_confdir: "/opt/graphite/conf"
 carbon_binary: "/opt/graphite/bin/carbon-cache.py"
-
-graphite_web_salt: "feiCh5eeheiKeingomoo5aiG0id9ooM1yeeg4unie3tahpai1pheef8uj3AhR8pa"
