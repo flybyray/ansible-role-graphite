@@ -22,18 +22,18 @@ This role has no requirements.
 Role Variables
 ===============
 
-```
-graphite_web_db_name: "/opt/graphite/storage/sqlite.db"
-graphite_web_db_user: "graphite"
-graphite_web_db_password: "passw0rd"
-graphite_web_db_host: "localhost"
-graphite_web_db_port: ""
-graphite_web_db_engine: "django.db.backends.sqlite3"
-graphite_web_db_ssl: False
-graphite_web_db_ssl_ca: "/etc/ssl/certs/ca-bundle.crt"
-graphite_web_timezone: "Europe/Zurich"
-graphite_web_salt: "&lt;random salt&gt;"
-```
+.. code-block:: ini
+
+  graphite_web_db_name: "/opt/graphite/storage/sqlite.db"
+  graphite_web_db_user: "graphite"
+  graphite_web_db_password: "passw0rd"
+  graphite_web_db_host: "localhost"
+  graphite_web_db_port: ""
+  graphite_web_db_engine: "django.db.backends.sqlite3"
+  graphite_web_db_ssl: False
+  graphite_web_db_ssl_ca: "/etc/ssl/certs/ca-bundle.crt"
+  graphite_web_timezone: "Europe/Zurich"
+  graphite_web_salt: "&lt;random salt&gt;"
 
 Dependencies
 =============
