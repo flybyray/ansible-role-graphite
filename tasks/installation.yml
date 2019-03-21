@@ -12,7 +12,7 @@
 
 - name: install graphite from pip
   pip:
-    executable: "/bin/pip3.4"
+    executable: "/opt/rh/rh-python36/root/usr/bin/pip3.6"
     state: present
     name: "{{ item }}"
   loop: '{{ pip_packages }}'
