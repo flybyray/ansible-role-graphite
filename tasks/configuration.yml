@@ -31,14 +31,14 @@
     dest: "/etc/httpd/conf.d/graphite-web.conf"
 
 - name: initialize database
-  command: "django-admin.py migrate --settings=graphite.settings --run-syncdb"
+  command: "/opt/rh/rh-python36/root/usr/bin/django-admin.py migrate --settings=graphite.settings --run-syncdb"
   environment:
     PYTHONPATH: "/opt/graphite/webapp"
   register: graphite_register_db_init
   changed_when: graphite_register_db_init.stdout is not search("No migrations to apply")
 
 - name: collect static files
-  command: "django-admin.py collectstatic --settings=graphite.settings"
+  command: "/opt/rh/rh-python36/root/usr/bin/django-admin.py collectstatic --settings=graphite.settings"
   environment:
     PYTHONPATH: "/opt/graphite/webapp"
   args:

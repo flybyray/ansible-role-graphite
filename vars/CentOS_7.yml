@@ -1,11 +1,9 @@
 ---
 
 graphite_requirements:
-  - python34-pip
-  - python34-devel
-  - python34-cairo
-  - python34-mysql
-  - python-setuptools
+  - centos-release-scl
+  - rh-python36
+  - cairo-devel 
   - libffi-devel
 
 pip_packages:
