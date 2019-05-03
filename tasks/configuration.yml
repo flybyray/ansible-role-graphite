@@ -46,6 +46,6 @@
   register: graphite_register_static_generated
 
 - name: configure mod-wsgi with python3
-  shell: "mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf"
+  shell: "/opt/rh/rh-python36/root/usr/bin/mod_wsgi-express install-module > /etc/httpd/conf.modules.d/02-wsgi.conf"
   args:
     creates: "/etc/httpd/conf.modules.d/02-wsgi.conf"

@@ -5,6 +5,7 @@ graphite_requirements:
   - rh-python36
   - cairo-devel 
   - libffi-devel
+  - httpd-devel
 
 pip_packages:
   - whisper
